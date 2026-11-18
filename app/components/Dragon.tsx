@@ -6,11 +6,15 @@ import { useEffect, useRef } from "react";
 
 // Coordinates in the illustration's 800 × 440 frame.
 const mouth = { x: 196, y: 193 };
-const duration = 1200;
+const breathDuration = 1200;
+const takeoff = 320;
+const lap = 2100;
+const landing = 320;
+const fireAt = takeoff + lap;
 
 function drawBreath(ctx: CanvasRenderingContext2D, elapsed: number) {
   ctx.clearRect(0, 0, 800, 440);
-  const strength = Math.min(1, elapsed / 160, (duration - elapsed) / 360);
+  const strength = Math.min(1, elapsed / 160, (breathDuration - elapsed) / 360);
   ctx.save();
   ctx.translate(mouth.x, mouth.y);
   ctx.scale(strength, strength);
@@ -39,46 +43,86 @@ function drawBreath(ctx: CanvasRenderingContext2D, elapsed: number) {
 }
 
 export default function Dragon() {
+  const scene = useRef<HTMLSpanElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const frame = useRef(0);
   const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  useEffect(() => () => {
-    cancelAnimationFrame(frame.current);
-    clearTimeout(timeout.current);
-  }, []);
 
-  function breathe() {
+  useEffect(
+    () => () => {
+      cancelAnimationFrame(frame.current);
+      clearTimeout(timeout.current);
+    },
+    [],
+  );
+
+  function flyAndBreathe() {
+    const layer = scene.current;
     const ctx = canvas.current?.getContext("2d");
-    if (!ctx) return;
-    cancelAnimationFrame(frame.current);
-    clearTimeout(timeout.current);
+    if (!layer || !ctx || frame.current || timeout.current !== undefined)
+      return;
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       drawBreath(ctx, 400);
-      timeout.current = setTimeout(() => ctx.clearRect(0, 0, 800, 440), duration);
+      timeout.current = setTimeout(() => {
+        ctx.clearRect(0, 0, 800, 440);
+        timeout.current = undefined;
+      }, breathDuration);
       return;
     }
+
     const start = performance.now();
-    function animate(now: number) {
-      if (!ctx) return;
+    const animate = (now: number) => {
       const elapsed = now - start;
-      if (elapsed >= duration) {
+      if (elapsed >= fireAt + breathDuration) {
         ctx.clearRect(0, 0, 800, 440);
+        layer.style.removeProperty("transform");
+        frame.current = 0;
         return;
       }
-      drawBreath(ctx, elapsed);
+
+      // The illustration and breath share one transform so the flame follows the jaw.
+      const progress = Math.min(1, Math.max(0, (elapsed - takeoff) / lap));
+      const angle = Math.PI * (1 - Math.cos(Math.PI * progress));
+      const radius = 94;
+      const x = radius * (Math.cos(angle) - 1);
+      const y = -radius * Math.sin(angle);
+      const airborne = Math.min(
+        1,
+        elapsed / takeoff,
+        Math.max(0, 1 - (elapsed - fireAt) / landing),
+      );
+      const scale = 1 - 0.42 * airborne;
+      layer.style.transform = `translate(${(x / 800) * 100}%, ${(y / 440) * 100}%) rotate(${-12 * Math.sin(angle)}deg) scale(${scale})`;
+      if (elapsed >= fireAt) drawBreath(ctx, elapsed - fireAt);
       frame.current = requestAnimationFrame(animate);
-    }
+    };
     frame.current = requestAnimationFrame(animate);
   }
 
-  return <button className="sculpture dragon" type="button" onClick={breathe}
-    aria-label="Make the origami dragon breathe fire">
-    <span className="dragon-scene">
-      <Image src="/images/origami-dragon.webp" alt="" width={1200} height={794}
-        priority sizes="(max-width: 700px) 70vw, 36vw" />
-      <canvas ref={canvas} width={800} height={440} aria-hidden="true" />
-    </span>
-    <span aria-hidden="true" className="cross tl" /><span aria-hidden="true" className="cross br" />
-    <span className="dragon-action"><Flame size={15} /> Breathe fire</span>
-  </button>;
+  return (
+    <button
+      className="sculpture dragon"
+      type="button"
+      onClick={flyAndBreathe}
+      aria-label="Make the origami dragon fly in a circle and breathe fire"
+    >
+      <span className="dragon-scene" ref={scene}>
+        <Image
+          src="/images/origami-dragon.webp"
+          alt=""
+          width={1200}
+          height={794}
+          priority
+          sizes="(max-width: 700px) 70vw, 36vw"
+        />
+        <canvas ref={canvas} width={800} height={440} aria-hidden="true" />
+      </span>
+      <span aria-hidden="true" className="cross tl" />
+      <span aria-hidden="true" className="cross br" />
+      <span className="dragon-action">
+        <Flame size={15} /> Fly &amp; breathe fire
+      </span>
+    </button>
+  );
 }
