@@ -43,7 +43,6 @@ main {
 }
 .navbar,
 .page,
-.selected,
 .hero-stage,
 .footer {
   width: min(90%, 1380px);
@@ -182,20 +181,6 @@ h1 em {
   background: var(--accent);
   border-color: var(--accent);
 }
-.selected {
-  padding: 45px 0 60px;
-}
-.selected header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-.selected header h2 {
-  font-size: clamp(30px, 4vw, 54px);
-  letter-spacing: -0.06em;
-}
-.selected header h2 span,
 .page h1 span {
   color: var(--accent);
 }
