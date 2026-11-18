@@ -8,10 +8,12 @@ export default function Contact() {
   const [alarmState, setAlarmState] = useState<"idle" | "playing" | "finished" | "error">("idle");
 
   const scream = useRef<HTMLAudioElement>(null);
+  const [pausePressed, setPausePressed] = useState(false);
   const [screamError, setScreamError] = useState(false);
   const alarmStarted = alarmState === "playing" || alarmState === "finished";
 
   async function playScream() {
+    setPausePressed(true);
     const audio = scream.current;
     if (!audio || !audio.paused) return;
     setScreamError(false);
@@ -26,6 +28,8 @@ export default function Contact() {
   async function playAlarm() {
     const audio = alarm.current;
     if (!audio || !audio.paused) return;
+    setPausePressed(false);
+    setScreamError(false);
     setAlarmState("idle");
     audio.volume = 1;
     try {
@@ -83,7 +87,7 @@ export default function Contact() {
             {alarmStarted && (
               <p className="mt-3">I did tell u not to press it</p>
             )}
-            {alarmState === "finished" && <p>I am not sorry about that 😝</p>}
+            {alarmState === "finished" && pausePressed && <p>I am not sorry about that 😝</p>}
             {screamError && <p>The scream couldn’t play. Press PAUSE to try again.</p>}
             {alarmState === "error" && <p>The sound couldn’t play. Press the button to try again.</p>}
           </div>
