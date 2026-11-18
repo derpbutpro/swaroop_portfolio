@@ -323,7 +323,13 @@ h1 em {
   align-items: center;
   gap: 6vw;
 }
+.portrait-photo {
+  object-fit: cover;
+  object-position: 50% 35%;
+}
 .portrait {
+  position: relative;
+  overflow: hidden;
   min-height: 460px;
   display: grid;
   place-items: center;

@@ -29,7 +29,7 @@ npm start
 - The contact form validates locally. It displays a preview message and offers a working email link.
 - The project uses Next.js App Router, TypeScript, Tailwind CSS, Lucide icons, and locally served Inter.
 
-The anime clips are original animated illustrations of a sea voyage and a shrine. The music clip is an original silent visual for “4 Raws” by EsDeeKid. The About page supports the brief’s gradient fallback while the approved portrait awaits an accessible original file. Student Support System uses the supplied repository URL and a title-based summary. Its implementation and technologies could not be verified.
+The anime clips are original animated illustrations of a sea voyage and a shrine. The music clip is an original silent visual for “4 Raws” by EsDeeKid. To show the approved portrait on About, upload it to `public/images/` as `swaroop.jpg`, `swaroop.jpeg`, `swaroop.png`, or `swaroop.webp` and rebuild. The page uses its gradient until that file is present. Student Support System uses the supplied repository URL and a title-based summary. Its implementation and technologies could not be verified.
 
 ## Publish and update
 
