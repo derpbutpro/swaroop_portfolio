@@ -380,6 +380,7 @@ body:has(.about-cover) .navbar nav a:last-child {
   .about-toolkit { align-items: start; }
   .about-toolkit ul { justify-content: flex-start; }
 }
+.films iframe,
 .films video,
 .record video {
   width: 100%;
