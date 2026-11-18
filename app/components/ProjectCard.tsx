@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import type { Project } from '@/data/portfolio';
+export default function ProjectCard({ project, index }: { project: Project; index: number }) { return <article className="project-card"><div className="project-top"><span>0{index + 1} / SELECTED WORK</span><span aria-hidden="true">↗</span></div><div><h2>{project.title}</h2><p>{project.description}</p>{project.technologies.length > 0 && <div className="chip-row">{project.technologies.map(tech => <span className="chip" key={tech}>{tech}</span>)}</div>}</div><Link href={project.url} target="_blank" rel="noreferrer" className="text-link">Explore repository ↗</Link></article>; }

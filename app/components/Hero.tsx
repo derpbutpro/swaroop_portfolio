@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import { profile } from '@/data/portfolio';
+export default function Hero() { return <section className="hero"><div className="eyebrow"><span className="spark"/> CREATIVE DEVELOPER · OPEN TO IDEAS</div><h1>Ideas into<br/><em>things you</em><br/>can try<span className="accent">.</span></h1><div className="hero-bottom"><p>{profile.intro}</p><div className="actions"><Link className="button primary" href="/projects">View my work ↗</Link><Link className="button" href="/contact">Contact me ↗</Link></div></div><div className="hero-index">SWAROOP BEVINAL / PORTFOLIO 2026</div></section>; }
