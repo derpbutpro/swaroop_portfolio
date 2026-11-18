@@ -19,15 +19,23 @@ export default function Hobbies() {
         ))}
       </div>
       <article className="record">
-        <TrackPreview />
         <div>
           <small>On rotation</small>
           <h2>{track.title}</h2>
           <p>{track.artist}</p>
         </div>
-        <a href={profile.spotify} className="text-link">
-          My Spotify ↗
-        </a>
+        <div className="record-links">
+          <a
+            href={`https://open.spotify.com/track/${track.spotifyId}`}
+            className="text-link" target="_blank" rel="noopener noreferrer"
+          >
+            Open in Spotify ↗
+          </a>
+          <a href={profile.spotify} className="text-link" target="_blank" rel="noopener noreferrer">
+            My Spotify ↗
+          </a>
+        </div>
+        <TrackPreview />
       </article>
     </section>
   );

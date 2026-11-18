@@ -1,54 +1,100 @@
 "use client";
 
-import { Pause, Play } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { track } from "@/data/portfolio";
 
-export default function TrackPreview() {
-  const media = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-  const [error, setError] = useState("");
+type SpotifyController = {
+  addListener(event: "ready", listener: () => void): void;
+  play(): void;
+  destroy(): void;
+};
 
-  async function togglePlayback() {
-    const video = media.current;
-    if (!video) return;
-    setError("");
-    if (!video.paused) {
-      video.pause();
-      return;
-    }
-    try {
-      await video.play();
-    } catch (cause) {
-      if (cause instanceof DOMException && cause.name === "AbortError") return;
-      setError("The preview could not play. Try again.");
-    }
+type SpotifyAPI = {
+  createController(
+    element: HTMLElement,
+    options: { uri: string; width: string; height: number },
+    callback: (controller: SpotifyController) => void,
+  ): void;
+};
+
+declare global {
+  interface Window {
+    onSpotifyIframeApiReady?: (api: SpotifyAPI) => void;
   }
+}
 
-  const Icon = playing ? Pause : Play;
-  return (
-    <div className="track-preview">
-      <video
-        ref={media}
-        muted
-        playsInline
-        preload="none"
-        poster="/images/4-raws.webp"
-        src="/videos/4-raws.mp4"
-        aria-label={`Silent visual for ${track.title} by ${track.artist}`}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        onEnded={() => setPlaying(false)}
-      />
-      <button
-        type="button"
-        className="track-toggle"
-        aria-label={`${playing ? "Pause" : "Play"} ${track.title} preview`}
-        onClick={togglePlayback}
-      >
-        <Icon aria-hidden="true" size={20} fill="currentColor" />
-      </button>
-      {error && <p role="status">{error}</p>}
-    </div>
-  );
+let apiPromise: Promise<SpotifyAPI> | undefined;
+
+function loadSpotify() {
+  if (!apiPromise) {
+    apiPromise = new Promise<SpotifyAPI>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://open.spotify.com/embed/iframe-api/v1";
+      const timeout = window.setTimeout(fail, 12000);
+      function fail() {
+        clearTimeout(timeout);
+        script.remove();
+        apiPromise = undefined;
+        reject(new Error("Spotify player unavailable"));
+      }
+      window.onSpotifyIframeApiReady = (api) => {
+        clearTimeout(timeout);
+        resolve(api);
+      };
+      script.onerror = fail;
+      document.head.append(script);
+    });
+  }
+  return apiPromise;
+}
+
+export default function TrackPreview() {
+  const host = useRef<HTMLDivElement>(null);
+  const [failed, setFailed] = useState(false);
+  const id = track.spotifyId;
+
+  useEffect(() => {
+    const container = host.current;
+    if (!container) return;
+    let disposed = false;
+    let player: SpotifyController | undefined;
+
+    loadSpotify().then((api) => {
+      if (disposed) return;
+      const mount = document.createElement("div");
+      container.replaceChildren(mount);
+      api.createController(mount, { uri: `spotify:track:${id}`, width: "100%", height: 152 }, (controller) => {
+        if (disposed) {
+          controller.destroy();
+          return;
+        }
+        player = controller;
+        controller.addListener("ready", () => {
+          if (!disposed) controller.play();
+        });
+      });
+    }).catch(() => {
+      if (!disposed) setFailed(true);
+    });
+
+    return () => {
+      disposed = true;
+      player?.destroy();
+      container.replaceChildren();
+    };
+  }, [id]);
+
+  if (failed) {
+    return (
+      <div className="spotify-player">
+        <iframe
+          title={`${track.title} by ${track.artist} on Spotify`}
+          src={`https://open.spotify.com/embed/track/${id}`}
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          height={152}
+        />
+      </div>
+    );
+  }
+  return <div className="spotify-player" ref={host} aria-label={`${track.title} by ${track.artist} on Spotify`} />;
 }

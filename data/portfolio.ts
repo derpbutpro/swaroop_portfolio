@@ -77,4 +77,8 @@ export const films = [
   { name: "One Piece", slug: "one-piece" },
   { name: "Naruto", slug: "naruto" },
 ];
-export const track = { title: "4 Raws", artist: "EsDeeKid" };
+export const track = {
+  title: "PSL – Slowed",
+  artist: "2KE",
+  spotifyId: "5bpwGBZi2wquJ8UHwfKev2",
+};

@@ -350,8 +350,7 @@ body:has(.about-cover) .navbar nav a:last-child {
   .about-bio { max-width: 43ch; }
 }
 .films iframe,
-.films video,
-.record video {
+.films video {
   width: 100%;
   aspect-ratio: 640/352;
   display: block;
@@ -362,19 +361,27 @@ body:has(.about-cover) .navbar nav a:last-child {
 }
 .record {
   margin-top: 24px;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 26px;
-  padding: 25px;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 30px);
   background: linear-gradient(115deg, #40292d, #1a1b1d);
 }
-.record-disc {
-  width: 80px;
-  height: 80px;
-  color: #d7a388;
+.record-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-.record .text-link {
-  margin-left: auto;
+.spotify-player {
+  grid-column: 1 / -1;
+  min-height: 152px;
+}
+.spotify-player iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
 }
 .small-muted {
   margin-top: 20px;
@@ -487,7 +494,7 @@ body:has(.about-cover) .navbar nav a:last-child {
     margin: 18px 0;
   }
   .record {
-    flex-wrap: wrap;
+    grid-template-columns: minmax(0, 1fr);
   }
   .dock {
     max-width: 96vw;
@@ -495,41 +502,12 @@ body:has(.about-cover) .navbar nav a:last-child {
   .dock a {
     width: min(13.8vw, 53px);
   }
-  .record-disc {
-    width: 54px;
-    height: 54px;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
-.track-preview {
-  position: relative;
-  width: min(45%, 380px);
-}
-.track-preview video {
-  border-radius: 10px;
-}
-.track-toggle {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #fff8ee;
-  color: #211b19;
-  cursor: pointer;
-  box-shadow: 0 2px 12px #0006;
-}
-@media (max-width: 700px) {
-  .track-preview { width: 100%; }
-}
-
 @media (hover: hover) and (pointer: fine) {
   :is(.project-card, .films article, .record, .contact-links a):hover {
     border-color: #71523f;
