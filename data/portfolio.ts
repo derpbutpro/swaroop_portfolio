@@ -70,6 +70,6 @@ export const pages = [
 
 export const films = [
   { name: "One Piece", slug: "one-piece" },
-  { name: "Naruto", youtubeId: "g0kFdsn2RUs" },
+  { name: "Naruto", slug: "naruto" },
 ];
 export const track = { title: "4 Raws", artist: "EsDeeKid" };

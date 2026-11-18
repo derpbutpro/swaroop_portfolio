@@ -10,29 +10,10 @@ export default function Hobbies() {
       <div className="films">
         {films.map((f) => (
           <article key={f.name}>
-            {f.slug ? (
-              <AnimeVideo name={f.name} slug={f.slug} />
-            ) : (
-              <iframe
-                title={f.name + " video on YouTube"}
-                src={`https://www.youtube-nocookie.com/embed/${f.youtubeId}?playsinline=1`}
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allow="encrypted-media; picture-in-picture; fullscreen"
-                allowFullScreen
-              />
-            )}
+            <AnimeVideo name={f.name} slug={f.slug} />
             <div>
               <small>Anime</small>
               <h2>{f.name}</h2>
-              {f.youtubeId && (
-                <a
-                  className="text-link"
-                  href={`https://www.youtube.com/watch?v=${f.youtubeId}`}
-                >
-                  Watch on YouTube ↗
-                </a>
-              )}
             </div>
           </article>
         ))}
