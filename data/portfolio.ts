@@ -10,6 +10,7 @@ export const profile = {
   name: "Swaroop Bevinal",
   intro:
     "I'm an innovator and creator who turns ideas into things you can try.",
+  quote: "I love a conversation that sends me home with something I want to build.",
   bio: "I'm an omnivert who enjoys meeting new people and getting lost in a good project. Outside of coding, I'm usually watching anime or listening to music.",
   email: "swaroopbevinal@gmail.com",
   github: "https://github.com/derpbutpro",

@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import Image from "next/image";
-import { profile, skills } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
 export default function About() {
   const portrait = ["swaroop.jpg", "swaroop.jpeg", "swaroop.png", "swaroop.webp"].find(
     (name) => existsSync(join(process.cwd(), "public", "images", name)),
@@ -27,12 +27,9 @@ export default function About() {
           <p className="about-bio">{profile.bio}</p>
         </div>
       </div>
-      <div className="about-toolkit">
-        <h2>Skills</h2>
-        <ul aria-label="Skills">
-          {skills.map(({ name }) => <li key={name}>{name}</li>)}
-        </ul>
-      </div>
+      <blockquote className="about-quote">
+        <p>“{profile.quote}”</p>
+      </blockquote>
     </section>
   );
 }

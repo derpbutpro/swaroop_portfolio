@@ -361,10 +361,13 @@ body:has(.about-cover) .navbar nav a:last-child {
 .about-title p { font-size: clamp(16px, 1.35vw, 21px); margin-bottom: 16px; font-weight: 550; }
 .about-title h1 { font-size: clamp(62px, 7.7vw, 116px); line-height: .92; letter-spacing: -.07em; }
 .about-bio { width: 28%; font-size: clamp(16px, 1.45vw, 23px); line-height: 1.45; text-wrap: pretty; }
-.about-toolkit { padding: 30px clamp(24px, 4vw, 70px); display: flex; align-items: baseline; gap: 5vw; }
-.about-toolkit h2 { font-size: 15px; color: #e8bb93; }
-.about-toolkit ul { flex: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 20px; list-style: none; padding: 0; margin: 0; }
-.about-toolkit li { font-size: clamp(16px, 1.5vw, 22px); font-weight: 550; }
+.about-quote {
+  margin: 0;
+  padding: clamp(22px, 3vw, 42px) clamp(24px, 4vw, 70px);
+  color: #f2d4b8;
+  font: italic clamp(22px, 2.4vw, 36px)/1.35 Georgia, serif;
+  text-wrap: balance;
+}
 
 @media (max-width: 700px) {
   body:has(.about-cover) .navbar { margin-top: 0; padding-inline: 5%; width: 100%; }
@@ -378,8 +381,6 @@ body:has(.about-cover) .navbar nav a:last-child {
   .about-title h1 { max-width: 10ch; font-size: clamp(54px, 11vw, 75px); }
   .about-title p { margin-bottom: 8px; }
   .about-bio { max-width: 43ch; }
-  .about-toolkit { align-items: start; }
-  .about-toolkit ul { justify-content: flex-start; }
 }
 .films iframe,
 .films video,
