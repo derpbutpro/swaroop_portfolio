@@ -4,7 +4,7 @@ export default function Projects() {
   return (
     <section id="projects" className="page">
       <h1>
-        Selected <em>work.</em>
+        My <em>projects.</em>
       </h1>
       <div className="project-grid">
         {projects.map((project, index) => (

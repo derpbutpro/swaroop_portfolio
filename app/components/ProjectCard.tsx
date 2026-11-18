@@ -14,10 +14,10 @@ export default function ProjectCard({
       <div className={"project-visual visual-" + index}>
         {project.image ? (
           <Image
-            src={project.image}
-            alt={project.title + " screenshot"}
-            width={700}
-            height={400}
+            src={project.image.src}
+            alt={project.image.alt}
+            fill
+            sizes="(max-width: 700px) 90vw, (max-width: 1533px) 45vw, 680px"
           />
         ) : (
           <Icon size={64} strokeWidth={1} aria-hidden="true" />

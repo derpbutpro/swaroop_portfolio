@@ -4,7 +4,7 @@ export type Project = {
   description: string;
   url: string;
   technologies: string[];
-  image?: string;
+  image?: { src: string; alt: string };
 };
 export const profile = {
   name: "Swaroop Bevinal",
@@ -29,12 +29,20 @@ export const skills: Skill[] = [
 export const projects: Project[] = [
   {
     title: "Student Support System",
+    image: {
+      src: "/images/student-support.webp",
+      alt: "Two students working together on a laptop in a library",
+    },
     description: "A project exploring how software can support students.",
     url: "https://github.com/derpbutpro/student-support",
     technologies: [],
   },
   {
     title: "Tic-Tac-Toe",
+    image: {
+      src: "/images/tic-tac-toe.webp",
+      alt: "Wooden tic-tac-toe board with X and O pieces",
+    },
     description:
       "Take turns placing Xs and Os on a three-by-three board. Complete a row, column, or diagonal to win, then reset for another round.",
     url: "https://github.com/derpbutpro/Tic-tac-toe",

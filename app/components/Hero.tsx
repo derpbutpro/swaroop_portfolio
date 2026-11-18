@@ -35,7 +35,7 @@ export default function Hero() {
       <section className="selected">
         <header>
           <h2>
-            Selected work<span>.</span>
+            My projects<span>.</span>
           </h2>
           <Link className="text-link" href="/projects">
             All projects ↗

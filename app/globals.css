@@ -259,7 +259,8 @@ h1 em {
   overflow: hidden;
 }
 .project-visual {
-  height: 140px;
+  position: relative;
+  aspect-ratio: 2 / 1;
   display: grid;
   place-items: center;
   background:
