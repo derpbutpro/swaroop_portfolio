@@ -7,6 +7,22 @@ export default function Contact() {
   const alarm = useRef<HTMLAudioElement>(null);
   const [alarmState, setAlarmState] = useState<"idle" | "playing" | "finished" | "error">("idle");
 
+  const scream = useRef<HTMLAudioElement>(null);
+  const [screamError, setScreamError] = useState(false);
+  const alarmStarted = alarmState === "playing" || alarmState === "finished";
+
+  async function playScream() {
+    const audio = scream.current;
+    if (!audio || !audio.paused) return;
+    setScreamError(false);
+    try {
+      await audio.play();
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+      setScreamError(true);
+    }
+  }
+
   async function playAlarm() {
     const audio = alarm.current;
     if (!audio || !audio.paused) return;
@@ -46,9 +62,17 @@ export default function Contact() {
               </a>
             ))}
           </div>
-          <button className="alarm-button" type="button" onClick={playAlarm} title="Plays a loud alarm">
-            DONT CLICK
-          </button>
+          <div className="flex flex-wrap items-center gap-3 mt-5">
+            <button className="alarm-button" type="button" onClick={playAlarm} title="Plays a loud alarm">
+              DONT CLICK
+            </button>
+            {alarmStarted && (
+              <button className="button" type="button" onClick={playScream} title="Plays a scream">
+                PAUSE
+              </button>
+            )}
+          </div>
+          <audio ref={scream} src="/audio/pause-scream.mp3" preload="none" />
           <audio
             ref={alarm}
             src="/audio/samsung-bass-boosted-alarm.mp3"
@@ -56,10 +80,11 @@ export default function Contact() {
             onEnded={() => setAlarmState("finished")}
           />
           <div aria-live="polite">
-            {(alarmState === "playing" || alarmState === "finished") && (
+            {alarmStarted && (
               <p className="mt-3">I did tell u not to press it</p>
             )}
             {alarmState === "finished" && <p>I am not sorry about that 😝</p>}
+            {screamError && <p>The scream couldn’t play. Press PAUSE to try again.</p>}
             {alarmState === "error" && <p>The sound couldn’t play. Press the button to try again.</p>}
           </div>
         </div>
