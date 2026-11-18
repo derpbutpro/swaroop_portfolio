@@ -1,0 +1,57 @@
+.garden {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 52% 52% 14px 14px / 23% 23% 14px 14px;
+  border: 1px solid #465347;
+  background: #25332e;
+}
+.garden svg { display: block; width: 100%; }
+.rocker, .inlet, .outlet, .ripple {
+  animation-duration: 5.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.rocker { transform-origin: 279px 249px; animation-name: tip; }
+.inlet { transform-origin: 341px 134px; animation-name: fill; }
+.outlet { transform-origin: 361px 273px; animation-name: pour; }
+.ripple { transform-origin: 368px 308px; animation-name: spread; }
+@keyframes tip {
+  0%, 50%, 100% { transform: rotate(-18deg); }
+  64%, 76% { transform: rotate(20deg); }
+  87% { transform: rotate(-21deg); }
+  92% { transform: rotate(-16deg); }
+}
+@keyframes fill {
+  0%, 50%, 100% { transform: scaleY(1); }
+  64%, 76% { transform: scaleY(1.47); }
+  87% { transform: scaleY(.95); }
+  92% { transform: scaleY(1.04); }
+}
+@keyframes pour {
+  0%, 62%, 80%, 100% { opacity: 0; transform: scaleY(.15); }
+  66%, 75% { opacity: .95; transform: scaleY(1); }
+}
+@keyframes spread {
+  0%, 65%, 100% { opacity: 0; transform: scale(.12); }
+  70% { opacity: .85; }
+  95% { opacity: 0; transform: scale(1.65); }
+}
+.toggle {
+  position: absolute; bottom: 8px; right: 8px;
+  display: grid; place-items: center; width: 40px; height: 40px;
+  border-radius: 50%; border: 1px solid #8a9781;
+  background: #17251ee6; color: #efe8d6; cursor: pointer;
+}
+.toggle svg { width: 15px; }
+.garden[data-paused="true"] :is(.rocker, .inlet, .outlet, .ripple) { animation-play-state: paused; }
+@media (max-width: 700px) {
+  .garden { order: -1; max-width: 360px; justify-self: end; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .garden :is(.rocker, .inlet, .outlet, .ripple) { animation: none; }
+  .rocker { transform: rotate(-18deg); }
+  .outlet, .ripple { opacity: 0; }
+  .toggle { display: none; }
+}

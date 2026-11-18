@@ -1,4 +1,4 @@
-import Dragon from "./Dragon";
+import BambooFountain from "./BambooFountain";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { profile } from "@/data/portfolio";
@@ -30,7 +30,7 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-        <Dragon />
+        <BambooFountain />
       </section>
       <section className="selected">
         <header>
