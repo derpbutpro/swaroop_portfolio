@@ -433,6 +433,19 @@ body:has(.about-cover) .navbar nav a:last-child {
   padding: 22px;
   overflow-wrap: anywhere;
 }
+.alarm-button {
+  margin-top: 20px;
+  padding: 14px 30px;
+  border: 1px solid #ff7977;
+  border-radius: 12px;
+  background: #b71e2d;
+  color: #fff;
+  font-weight: 750;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+.alarm-button:hover { background: #ce2535; }
+.alarm-button:active { background: #9b1825; }
 .contact-links a:is(:hover, :focus-visible) { border-color: var(--accent); }
 .contact-links strong {
   display: flex;

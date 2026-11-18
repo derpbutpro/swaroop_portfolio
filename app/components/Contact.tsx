@@ -1,9 +1,25 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { contacts } from "@/data/portfolio";
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const alarm = useRef<HTMLAudioElement>(null);
+  const [audioError, setAudioError] = useState(false);
+
+  async function playAlarm() {
+    const audio = alarm.current;
+    if (!audio || !audio.paused) return;
+    setAudioError(false);
+    audio.volume = 1;
+    try {
+      await audio.play();
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+      setAudioError(true);
+    }
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (event.currentTarget.reportValidity()) setSubmitted(true);
@@ -29,6 +45,11 @@ export default function Contact() {
               </a>
             ))}
           </div>
+          <button className="alarm-button" type="button" onClick={playAlarm} title="Plays a loud alarm">
+            DONT CLICK
+          </button>
+          <audio ref={alarm} src="/audio/samsung-bass-boosted-alarm.mp3" preload="none" />
+          {audioError && <p role="status">The sound couldn’t play. Press the button to try again.</p>}
         </div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Your name</label>
