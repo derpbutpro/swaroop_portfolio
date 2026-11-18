@@ -23,6 +23,8 @@ declare global {
   }
 }
 
+const playerHeight = 352;
+
 let apiPromise: Promise<SpotifyAPI> | undefined;
 
 function loadSpotify() {
@@ -63,7 +65,7 @@ export default function TrackPreview() {
       if (disposed) return;
       const mount = document.createElement("div");
       container.replaceChildren(mount);
-      api.createController(mount, { uri: `spotify:track:${id}`, width: "100%", height: 152 }, (controller) => {
+      api.createController(mount, { uri: `spotify:track:${id}`, width: "100%", height: playerHeight }, (controller) => {
         if (disposed) {
           controller.destroy();
           return;
@@ -91,10 +93,10 @@ export default function TrackPreview() {
           title={`${track.title} by ${track.artist} on Spotify`}
           src={`https://open.spotify.com/embed/track/${id}`}
           allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-          height={152}
+          height={playerHeight}
         />
       </div>
     );
   }
-  return <div className="spotify-player" ref={host} aria-label={`${track.title} by ${track.artist} on Spotify`} />;
+  return <div className="spotify-player" ref={host} style={{ minHeight: playerHeight }} aria-label={`${track.title} by ${track.artist} on Spotify`} />;
 }

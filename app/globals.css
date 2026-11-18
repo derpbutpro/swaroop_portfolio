@@ -254,13 +254,11 @@ h1 em {
   padding: clamp(20px, 3vw, 40px);
 }
 .project-body h2,
-.films h2,
-.record h2 {
+.films h2 {
   font-size: clamp(23px, 2.3vw, 38px);
   letter-spacing: -0.055em;
 }
-.project-body p,
-.record p {
+.project-body p {
   color: var(--muted);
   line-height: 1.6;
   margin: 12px 0;
@@ -355,33 +353,17 @@ body:has(.about-cover) .navbar nav a:last-child {
   aspect-ratio: 640/352;
   display: block;
 }
-.films small,
-.record small {
+.films small {
   color: var(--accent);
 }
 .record {
   margin-top: 24px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 20px;
-  padding: clamp(16px, 3vw, 30px);
   background: linear-gradient(115deg, #40292d, #1a1b1d);
-}
-.record-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.spotify-player {
-  grid-column: 1 / -1;
-  min-height: 152px;
 }
 .spotify-player iframe {
   display: block;
   width: 100%;
   border: 0;
-  border-radius: 12px;
 }
 .small-muted {
   margin-top: 20px;
@@ -492,9 +474,6 @@ body:has(.about-cover) .navbar nav a:last-child {
   .stage-copy h1 {
     font-size: clamp(70px, 15vw, 102px);
     margin: 18px 0;
-  }
-  .record {
-    grid-template-columns: minmax(0, 1fr);
   }
   .dock {
     max-width: 96vw;

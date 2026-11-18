@@ -1,4 +1,4 @@
-import { profile, films, track } from "@/data/portfolio";
+import { films, track } from "@/data/portfolio";
 import AnimeVideo from "./AnimeVideo";
 import TrackPreview from "./TrackPreview";
 export default function Hobbies() {
@@ -18,23 +18,7 @@ export default function Hobbies() {
           </article>
         ))}
       </div>
-      <article className="record">
-        <div>
-          <small>On rotation</small>
-          <h2>{track.title}</h2>
-          <p>{track.artist}</p>
-        </div>
-        <div className="record-links">
-          <a
-            href={`https://open.spotify.com/track/${track.spotifyId}`}
-            className="text-link" target="_blank" rel="noopener noreferrer"
-          >
-            Open in Spotify ↗
-          </a>
-          <a href={profile.spotify} className="text-link" target="_blank" rel="noopener noreferrer">
-            My Spotify ↗
-          </a>
-        </div>
+      <article className="record" aria-label={`On rotation: ${track.title} by ${track.artist}`}>
         <TrackPreview />
       </article>
     </section>
