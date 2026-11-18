@@ -1,5 +1,7 @@
 import { projects } from "@/data/portfolio";
 import ProjectCard from "./ProjectCard";
+import TicTacToe from "./TicTacToe";
+
 export default function Projects() {
   return (
     <section id="projects" className="page">
@@ -11,6 +13,7 @@ export default function Projects() {
           <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
+      <TicTacToe />
     </section>
   );
 }

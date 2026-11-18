@@ -1,5 +1,4 @@
 import { ArrowUpRight, BookOpen, Grid3X3 } from "lucide-react";
-import TicTacToe from "./TicTacToe";
 import Image from "next/image";
 import type { Project } from "@/data/portfolio";
 export default function ProjectCard({
@@ -38,7 +37,6 @@ export default function ProjectCard({
           View repository <ArrowUpRight size={15} />
         </a>
       </div>
-      {project.demo === "tic-tac-toe" && <TicTacToe />}
     </article>
   );
 }
