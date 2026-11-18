@@ -1,6 +1,7 @@
 import "@fontsource-variable/inter";
 import type { Metadata } from "next";
 import "./globals.css";
+import Atmosphere from "./components/Atmosphere";
 import Navbar from "./components/Navbar";
 import FloatingDock from "./components/FloatingDock";
 import Footer from "./components/Footer";
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Atmosphere />
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
