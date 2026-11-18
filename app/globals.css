@@ -151,8 +151,7 @@ h1 em {
   letter-spacing: -0.075em;
 }
 .intro,
-.lead,
-.about-copy p {
+.lead {
   font-size: clamp(17px, 1.55vw, 23px);
   line-height: 1.55;
   color: var(--muted);
@@ -242,7 +241,6 @@ h1 em {
 .project-grid,
 .films,
 .skills-layout,
-.about-layout,
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -314,31 +312,73 @@ h1 em {
 .project-body .text-link {
   margin-top: 20px;
 }
-.about-layout {
-  align-items: center;
-  gap: 6vw;
-}
-.portrait-photo {
-  object-fit: cover;
-  object-position: 50% 35%;
-}
-.portrait {
+/* The About header shares the portrait cover with the page introduction. */
+body:has(.about-cover) .navbar {
   position: relative;
+  z-index: 2;
+  margin-top: 22px;
+  padding-inline: clamp(20px, 3.2vw, 52px);
+  width: min(94%, 1380px);
+  border: 0;
+  color: white;
+}
+body:has(.about-cover) .navbar nav a:last-child {
+  background: #fff8ee;
+  color: #291810;
+  padding: 9px 16px;
+  border-radius: 99px;
+}
+.about-cover {
+  width: min(94%, 1380px);
+  margin: -82px auto 48px;
+  border-radius: 20px;
   overflow: hidden;
-  min-height: 460px;
+  background: #1a1919;
+}
+.about-stage {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  place-items: center;
-  background:
-    radial-gradient(at top left, #ff8b2c, transparent 65%),
-    linear-gradient(135deg, #a63b16, #380d20 75%);
-  border-radius: 16px;
+  align-items: center;
+  min-height: clamp(530px, 46vw, 700px);
+  padding: 100px clamp(24px, 4vw, 70px) 50px;
+  background: linear-gradient(110deg, #db550c, #590c22);
+  overflow: hidden;
+  border-radius: 0 0 36px 36px;
 }
-.portrait span {
-  font: italic 120px Georgia;
-  color: #fbc3a5;
+.about-photo { object-fit: cover; object-position: 50% 30%; z-index: -2; }
+.about-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, #1e090665, transparent 25%, transparent 65%, #190e0e6b),
+              linear-gradient(90deg, #4f180a55, transparent 42%, transparent 56%, #29081794);
 }
-.about-copy p {
-  margin: 25px 0;
+.about-story { display: flex; align-items: center; justify-content: space-between; gap: 24px; color: #fff8ef; }
+.about-title { width: 42%; }
+.about-title p { font-size: clamp(16px, 1.35vw, 21px); margin-bottom: 16px; font-weight: 550; }
+.about-title h1 { font-size: clamp(62px, 7.7vw, 116px); line-height: .92; letter-spacing: -.07em; }
+.about-bio { width: 28%; font-size: clamp(16px, 1.45vw, 23px); line-height: 1.45; text-wrap: pretty; }
+.about-toolkit { padding: 30px clamp(24px, 4vw, 70px); display: flex; align-items: baseline; gap: 5vw; }
+.about-toolkit h2 { font-size: 15px; color: #e8bb93; }
+.about-toolkit ul { flex: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 20px; list-style: none; padding: 0; margin: 0; }
+.about-toolkit li { font-size: clamp(16px, 1.5vw, 22px); font-weight: 550; }
+
+@media (max-width: 700px) {
+  body:has(.about-cover) .navbar { margin-top: 0; padding-inline: 5%; width: 100%; }
+  body:has(.about-cover) .navbar nav a:last-child { padding: 6px 10px; }
+  .about-cover { margin-top: -66px; width: 100%; border-radius: 0 0 18px 18px; }
+  .about-stage { align-items: end; min-height: 640px; padding: 270px 6% 32px; border-radius: 0 0 24px 24px; }
+  .about-photo { object-position: 51% top; }
+  .about-stage::after { background: linear-gradient(180deg, #230d109c, transparent 18%, transparent 42%, #1c0714b8 65%, #160913fa); }
+  .about-story { display: grid; gap: 16px; }
+  .about-title, .about-bio { width: auto; }
+  .about-title h1 { max-width: 10ch; font-size: clamp(54px, 11vw, 75px); }
+  .about-title p { margin-bottom: 8px; }
+  .about-bio { max-width: 43ch; }
+  .about-toolkit { align-items: start; }
+  .about-toolkit ul { justify-content: flex-start; }
 }
 .films video,
 .record video {
@@ -544,8 +584,7 @@ h1 em {
     font-size: 18px;
   }
   .hero-stage,
-  .about-layout,
-  .contact-layout,
+    .contact-layout,
   .skills-layout,
   .films,
   .project-grid {
@@ -563,12 +602,6 @@ h1 em {
     width: 100%;
     max-height: 320px;
     aspect-ratio: 1.5;
-  }
-  .about-copy {
-    order: -1;
-  }
-  .portrait {
-    min-height: 290px;
   }
   .record {
     flex-wrap: wrap;
