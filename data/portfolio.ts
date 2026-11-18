@@ -21,6 +21,29 @@ export const profile = {
     "https://open.spotify.com/user/31wuldc7f2yry2gnwjcwu53srxkm?si=1872fe30421b491a",
   phone: "+919482138416",
 };
+export const conversationStarters = [
+  {
+    topic: "Music",
+    prompt: "Which old hit do you still know every word to? Send me a classic, a phonk track, or an English song you’ve had on repeat.",
+  },
+  {
+    topic: "Series, movies & manga",
+    prompt: "What should I watch or read next? I’m up for Netflix series, anime, manga, and a good debate about the best Marvel movie.",
+  },
+  {
+    topic: "Hackathons",
+    prompt: "Putting a hackathon team together? Tell me what you want to build and when it’s happening. I’d be interested in joining.",
+  },
+  {
+    topic: "New tech",
+    prompt: "Choosing between two laptops or planning a PC build? Send me the specs. I’d love to hear what you’re considering.",
+  },
+  {
+    topic: "Study advice",
+    prompt: "What are you working on, and where are you getting stuck? I’m happy to share study tips and help you figure out what to try next.",
+  },
+];
+
 export const contacts = [
   { label: "Email", detail: profile.email, href: `mailto:${profile.email}` },
   { label: "GitHub", detail: "@derpbutpro", href: profile.github },
