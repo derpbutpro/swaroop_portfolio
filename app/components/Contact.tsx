@@ -5,18 +5,19 @@ import { contacts } from "@/data/portfolio";
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const alarm = useRef<HTMLAudioElement>(null);
-  const [audioError, setAudioError] = useState(false);
+  const [alarmState, setAlarmState] = useState<"idle" | "playing" | "finished" | "error">("idle");
 
   async function playAlarm() {
     const audio = alarm.current;
     if (!audio || !audio.paused) return;
-    setAudioError(false);
+    setAlarmState("idle");
     audio.volume = 1;
     try {
       await audio.play();
+      setAlarmState("playing");
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return;
-      setAudioError(true);
+      setAlarmState("error");
     }
   }
 
@@ -48,8 +49,19 @@ export default function Contact() {
           <button className="alarm-button" type="button" onClick={playAlarm} title="Plays a loud alarm">
             DONT CLICK
           </button>
-          <audio ref={alarm} src="/audio/samsung-bass-boosted-alarm.mp3" preload="none" />
-          {audioError && <p role="status">The sound couldn’t play. Press the button to try again.</p>}
+          <audio
+            ref={alarm}
+            src="/audio/samsung-bass-boosted-alarm.mp3"
+            preload="none"
+            onEnded={() => setAlarmState("finished")}
+          />
+          <div aria-live="polite">
+            {(alarmState === "playing" || alarmState === "finished") && (
+              <p className="mt-3">I did tell u not to press it</p>
+            )}
+            {alarmState === "finished" && <p>I am not sorry about that 😝</p>}
+            {alarmState === "error" && <p>The sound couldn’t play. Press the button to try again.</p>}
+          </div>
         </div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Your name</label>
