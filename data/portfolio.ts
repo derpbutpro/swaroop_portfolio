@@ -4,6 +4,7 @@ export type Project = {
   description: string;
   url: string;
   technologies: string[];
+  demo?: "tic-tac-toe";
   image?: { src: string; alt: string };
 };
 export const profile = {
@@ -49,6 +50,7 @@ export const projects: Project[] = [
   },
   {
     title: "Tic-Tac-Toe",
+    demo: "tic-tac-toe",
     image: {
       src: "/images/tic-tac-toe.webp",
       alt: "Wooden tic-tac-toe board with X and O pieces",

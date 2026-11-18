@@ -228,6 +228,7 @@ h1 em {
   border-radius: 16px;
   overflow: hidden;
 }
+.project-grid { align-items: start; }
 .project-visual {
   position: relative;
   aspect-ratio: 2 / 1;
