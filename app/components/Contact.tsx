@@ -1,6 +1,7 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import { profile } from "@/data/portfolio";
+import { ArrowUpRight } from "lucide-react";
+import { contacts } from "@/data/portfolio";
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -21,24 +22,12 @@ export default function Contact() {
             you.
           </p>
           <div className="contact-links">
-            <a href={`mailto:${profile.email}`}>
-              Email ↗<span>{profile.email}</span>
-            </a>
-            <a href={profile.github} target="_blank" rel="noreferrer">
-              GitHub ↗
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn ↗
-            </a>
-            <a href={profile.instagram} target="_blank" rel="noreferrer">
-              Instagram ↗
-            </a>
-            <a href={profile.spotify} target="_blank" rel="noreferrer">
-              Spotify ↗
-            </a>
-            <a href={`tel:${profile.phone}`}>
-              Phone ↗<span>+91 94821 38416</span>
-            </a>
+            {contacts.map(({ label, detail, href }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+                <strong>{label}<ArrowUpRight aria-hidden="true" size={19} /></strong>
+                <span>{detail}</span>
+              </a>
+            ))}
           </div>
         </div>
         <form onSubmit={handleSubmit}>

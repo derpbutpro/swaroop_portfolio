@@ -29,7 +29,7 @@ npm start
 - The contact form validates locally. It displays a preview message and offers a working email link.
 - The project uses Next.js App Router, TypeScript, Tailwind CSS, Lucide icons, and locally served Inter.
 
-The One Piece and Naruto cards embed the YouTube videos selected in `data/portfolio.ts`. The music clip is an original silent visual for “4 Raws” by EsDeeKid. To show the approved portrait on About, upload it to `public/images/` as `swaroop.jpg`, `swaroop.jpeg`, `swaroop.png`, or `swaroop.webp` and rebuild. The page uses its gradient until that file is present. Student Support System uses the supplied repository URL and a title-based summary. Its implementation and technologies could not be verified.
+One Piece plays the local MP4 in `public/videos/one-piece.mp4`. Naruto uses the YouTube video selected in `data/portfolio.ts`. The music clip is an original silent visual for “4 Raws” by EsDeeKid. To show the approved portrait on About, upload it to `public/images/` as `swaroop.jpg`, `swaroop.jpeg`, `swaroop.png`, or `swaroop.webp` and rebuild. The page uses its gradient until that file is present. Student Support System uses the supplied repository URL and a title-based summary. Its implementation and technologies could not be verified.
 
 ## Publish and update
 

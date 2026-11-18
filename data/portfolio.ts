@@ -19,6 +19,15 @@ export const profile = {
     "https://open.spotify.com/user/31wuldc7f2yry2gnwjcwu53srxkm?si=1872fe30421b491a",
   phone: "+919482138416",
 };
+export const contacts = [
+  { label: "Email", detail: profile.email, href: `mailto:${profile.email}` },
+  { label: "GitHub", detail: "@derpbutpro", href: profile.github },
+  { label: "LinkedIn", detail: profile.name, href: profile.linkedin },
+  { label: "Instagram", detail: "@s.4.s_n_t", href: profile.instagram },
+  { label: "Spotify", detail: new URL(profile.spotify).pathname.split("/").pop(), href: profile.spotify },
+  { label: "Phone", detail: "+91 94821 38416", href: `tel:${profile.phone}` },
+];
+
 export const skills: Skill[] = [
   { name: "HTML", level: 20 },
   { name: "CSS", level: 30 },
@@ -59,7 +68,7 @@ export const pages = [
 ];
 
 export const films = [
-  { name: "One Piece", youtubeId: "P62lR0V8AZk" },
+  { name: "One Piece", slug: "one-piece" },
   { name: "Naruto", youtubeId: "g0kFdsn2RUs" },
 ];
 export const track = { title: "4 Raws", artist: "EsDeeKid" };
