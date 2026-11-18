@@ -48,7 +48,7 @@ export const contacts = [
   { label: "GitHub", detail: "@derpbutpro", href: profile.github },
   { label: "LinkedIn", detail: profile.name, href: profile.linkedin },
   { label: "Instagram", detail: "@s.4.s_n_t", href: profile.instagram },
-  { label: "Spotify", detail: new URL(profile.spotify).pathname.split("/").pop(), href: profile.spotify },
+  { label: "Spotify", detail: profile.name, href: profile.spotify },
   { label: "Phone", detail: "+91 94821 38416", href: `tel:${profile.phone}` },
 ];
 
