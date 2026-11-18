@@ -25,7 +25,7 @@ npm start
 - `data/portfolio.ts` contains the biography, links, skill percentages, projects, and hobby selections.
 - `app/components/` contains the sections. Each route in `app/` renders its section. The Home route is `app/page.tsx`.
 - `app/globals.css` controls layout, color, typography, responsive behavior, and reduced motion.
-- `public/images/` and `public/videos/` hold local artwork, posters and silent MP4s. Replace a video and its matching poster together. The videos use native controls and wait for interaction.
+- `public/images/` and `public/videos/` hold local artwork, posters and silent MP4s. Replace a video and its matching poster together. The anime clips use native controls. The silent music preview has one play/pause button. All videos wait for interaction.
 - The contact form validates locally. It displays a preview message and offers a working email link.
 - The project uses Next.js App Router, TypeScript, Tailwind CSS, Lucide icons, and locally served Inter.
 

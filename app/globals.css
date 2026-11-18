@@ -626,14 +626,29 @@ body:has(.about-cover) .navbar nav a:last-child {
     animation: none;
   }
 }
-.record video {
+.track-preview {
+  position: relative;
   width: min(45%, 380px);
-  border-radius: 8px;
+}
+.track-preview video {
+  border-radius: 10px;
+}
+.track-toggle {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff8ee;
+  color: #211b19;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #0006;
 }
 @media (max-width: 700px) {
-  .record video {
-    width: 100%;
-  }
+  .track-preview { width: 100%; }
 }
 
 .dragon { width: 100%; cursor: pointer; isolation: isolate; }
