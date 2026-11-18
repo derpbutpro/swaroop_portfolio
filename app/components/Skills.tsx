@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import SkillGyroscope from "./SkillGyroscope";
 import { skills } from "@/data/portfolio";
 export default function Skills() {
   const [open, setOpen] = useState<string | null>(null);
@@ -9,26 +10,7 @@ export default function Skills() {
         My <em>skills.</em>
       </h1>
       <div className="skills-layout">
-        <div className="orbit" aria-label="Skills and AI tools">
-          <div className="orbit-ring" />
-          <div className="orbit-center">
-            AI TOOLS
-            <small>
-              Antigravity
-              <br />
-              ChatGPT
-              <br />
-              Claude
-            </small>
-          </div>
-          <div className="rotor">
-            {skills.map((skill, index) => (
-              <span className={`orbit-item item-${index}`} key={skill.name}>
-                <b>{skill.name}</b>
-              </span>
-            ))}
-          </div>
-        </div>
+        <SkillGyroscope />
         <div className="skill-list">
           <h2>Skills in progress</h2>
           {skills.map((skill) => (

@@ -411,75 +411,23 @@ body:has(.about-cover) .navbar nav a:last-child {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 340px;
+  min-width: 0;
+  background: radial-gradient(ellipse at 48% 44%, #322923 0%, #1f2024 48%, #17181b 84%);
 }
-.orbit-center {
+.orbit svg[role="img"] { display: block; width: min(100%, 570px); height: auto; }
+.gyro-toggle {
+  position: absolute;
+  bottom: 9px;
+  right: 9px;
   display: grid;
+  width: 40px;
+  height: 40px;
   place-items: center;
-  text-align: center;
-  background: #422e22;
-  border: 1px solid #70462a;
-  width: 125px;
-  height: 125px;
+  border: 1px solid #60574c;
   border-radius: 50%;
-  font: 11px monospace;
-  color: var(--accent);
-  align-content: center;
-  gap: 4px;
-}
-.orbit-center small {
-  color: var(--text);
-}
-.rotor,
-.orbit-ring {
-  width: min(66%, 290px);
-  aspect-ratio: 1;
-  position: absolute;
-  border-radius: 50%;
-}
-.orbit-ring {
-  border: 1px dashed #79573e;
-}
-.rotor {
-  animation: orbit 42s linear infinite;
-}
-.orbit-item {
-  position: absolute;
-  translate: -50% -50%;
-}
-.orbit-item b {
-  display: block;
-  background: #2c2622;
-  border: 1px solid #77563e;
-  padding: 6px 10px;
-  border-radius: 30px;
-  font-size: 12px;
-  animation: orbit 42s linear reverse infinite;
-}
-.item-0 {
-  left: 50%;
-  top: 0;
-}
-.item-1 {
-  left: 98%;
-  top: 35%;
-}
-.item-2 {
-  left: 79%;
-  top: 90%;
-}
-.item-3 {
-  left: 21%;
-  top: 90%;
-}
-.item-4 {
-  left: 2%;
-  top: 35%;
-}
-@keyframes orbit {
-  to {
-    transform: rotate(360deg);
-  }
+  background: #232326;
+  color: #f4dec9;
+  cursor: pointer;
 }
 .skill-row button {
   display: flex;
@@ -621,10 +569,6 @@ body:has(.about-cover) .navbar nav a:last-child {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  .rotor,
-  .orbit-item b {
-    animation: none;
   }
 }
 .track-preview {
