@@ -52,6 +52,6 @@ export const pages = [
 
 export const films = [
   { name: "One Piece", youtubeId: "P62lR0V8AZk" },
-  { name: "Jujutsu Kaisen", slug: "shrine" },
+  { name: "Naruto", youtubeId: "g0kFdsn2RUs" },
 ];
 export const track = { title: "4 Raws", artist: "EsDeeKid" };
