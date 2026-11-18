@@ -336,6 +336,37 @@ body:has(.about-cover) .navbar nav a:last-child {
   color: var(--accent);
   font-family: Georgia, serif;
 }
+.role-model {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+.role-model summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  cursor: pointer;
+  list-style: none;
+}
+.role-model summary::-webkit-details-marker { display: none; }
+.role-model summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+.role-model summary img { width: clamp(48px, 5vw, 72px); border-radius: 12px; }
+.role-model summary > span { display: grid; gap: 3px; }
+.role-model small { color: var(--accent); font: .8rem monospace; }
+.role-model strong { font-size: 1.15rem; }
+.role-model summary span span { color: var(--muted); font-size: .9rem; }
+.role-model summary svg { flex: none; margin-left: auto; color: var(--accent); }
+.role-model[open] summary svg { transform: rotate(180deg); }
+.role-model-story {
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  line-height: 1.6;
+}
+.role-model-story p + p { margin-top: .75em; }
 .conversation dl > div {
   border-top: 1px solid var(--line);
   padding: 18px 0;
