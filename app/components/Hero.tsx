@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Dragon from "./Dragon";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { profile } from "@/data/portfolio";
@@ -30,18 +30,7 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-        <figure className="sculpture">
-          <Image
-            src="/images/copper-knot.webp"
-            alt="An intertwined loop of ribbed copper"
-            width={1000}
-            height={1000}
-            priority
-            sizes="(max-width: 700px) 90vw, 48vw"
-          />
-          <div className="cross tl" />
-          <div className="cross br" />
-        </figure>
+        <Dragon />
       </section>
       <section className="selected">
         <header>
