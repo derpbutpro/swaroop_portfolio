@@ -1,2 +1,25 @@
-import { profile, skills } from '@/data/portfolio';
-export default function About() { return <section className="page about-page"><div className="section-kicker">01 / THE PERSON</div><div className="about-layout"><div className="portrait" role="img" aria-label="Warm abstract profile artwork"><div className="portrait-orb"/><span>SB<span className="accent">.</span></span></div><div className="about-copy"><h1>More than<br/><em>the code.</em></h1><p>{profile.bio}</p><div className="chip-row">{skills.map(skill => <span className="chip" key={skill.name}>{skill.name}</span>)}</div><p className="small-muted">Curious by nature. Always building something new.</p></div></div></section>; }
+import { profile, skills } from "@/data/portfolio";
+export default function About() {
+  return (
+    <section id="about" className="page">
+      <div className="about-layout">
+        <div className="portrait">
+          <span>SB.</span>
+        </div>
+        <div className="about-copy">
+          <h1>
+            About <em>me.</em>
+          </h1>
+          <p>{profile.bio}</p>
+          <div className="chip-row">
+            {skills.map((s) => (
+              <span className="chip" key={s.name}>
+                {s.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

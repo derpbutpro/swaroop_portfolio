@@ -1,3 +1,50 @@
-import Link from 'next/link';
-import { profile } from '@/data/portfolio';
-export default function Hobbies() { return <section className="page"><div className="section-kicker">02 / OFF THE CLOCK</div><h1>What keeps me<br/><em>curious.</em></h1><div className="hobby-grid"><article className="hobby-card anime"><span className="card-number">01 / ANIME</span><div><h2>New worlds,<br/>new ideas.</h2><p>One Piece and Jujutsu Kaisen are among my favorites.</p></div><span className="hobby-symbol" aria-hidden="true">✺</span></article><article className="hobby-card music"><span className="card-number">02 / MUSIC</span><div><h2>Always in<br/>rotation.</h2><p>Music is part of my creative rhythm. Find me on Spotify.</p><Link className="text-link" href={profile.spotify} target="_blank" rel="noreferrer">Open Spotify ↗</Link></div><div className="fake-player" aria-label="Music themed visual"><span>♪ &nbsp; 4 Raws · EsDeeKid</span><span>▶ ━━━━━ ◉</span></div></article></div></section>; }
+import { profile, films, track } from "@/data/portfolio";
+import { AudioLines } from "lucide-react";
+export default function Hobbies() {
+  return (
+    <section id="hobbies" className="page">
+      <h1>
+        Hobbies<span>.</span>
+      </h1>
+      <div className="films">
+        {films.map((f) => (
+          <article key={f.slug}>
+            <video
+              controls
+              muted
+              playsInline
+              preload="none"
+              poster={"/images/" + f.slug + ".webp"}
+              aria-label={f.name + " original silent animation"}
+              src={"/videos/" + f.slug + ".mp4"}
+            />
+            <div>
+              <small>Anime</small>
+              <h2>{f.name}</h2>
+            </div>
+          </article>
+        ))}
+      </div>
+      <article className="record">
+        <video
+          controls
+          muted
+          playsInline
+          preload="none"
+          poster="/images/4-raws.webp"
+          src="/videos/4-raws.mp4"
+          aria-label="Silent animated player for 4 Raws by EsDeeKid"
+        />
+        <div>
+          <small>On rotation</small>
+          <h2>{track.title}</h2>
+          <p>{track.artist}</p>
+        </div>
+        <AudioLines size={40} aria-hidden="true" />
+        <a href={profile.spotify} className="text-link">
+          My Spotify ↗
+        </a>
+      </article>
+    </section>
+  );
+}

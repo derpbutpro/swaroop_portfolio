@@ -1,32 +1,36 @@
-# Swaroop Bevinal Portfolio
+# Swaroop Bevinal’s portfolio
 
-A responsive personal portfolio built with Next.js App Router, React, TypeScript, Tailwind CSS, and ESLint. It has separate Home, About, Hobbies, Skills, Projects, and Contact pages. The contact form validates locally and shows a preview message.
+Six pages share a navigation bar and a keyboard-accessible dock. The Home page introduces Swaroop and links to selected projects. About, Hobbies, Skills, Projects, and Contact also have their own URLs.
 
 ## Run locally
 
-Tested with Node.js 24.22.1.
+Use Node.js 24.22.1 (tested) and npm. In the project folder, run:
 
-```bash
+```sh
 npm install
 npm run dev
 ```
 
-Open the address printed by Next.js. For a production build, run `npm run build`, followed by `npm run start`. Check code with `npm run lint` and `npm run typecheck`.
+Open the address printed by Next.js. To reproduce the locked installation, use `npm ci`. To check the project and run its production version:
 
-## Where to edit
+```sh
+npm run lint
+npm run typecheck
+npm run build
+npm start
+```
 
-- `data/portfolio.ts` holds the name, biography, contact links, skills, page links, and project details.
-- `app/page.tsx` is the Home page. Each other route has its own `app/<page>/page.tsx`.
-- `app/components/` contains the page sections and shared navigation.
-- `app/globals.css` contains the visual design and responsive styles.
-- `public/images/` and `public/videos/` are for approved local media.
+## Edit the site
 
-To add an About portrait, place an approved image under `public/images/` and replace the abstract portrait treatment in `app/components/About.tsx` with a responsive image. To add hobby videos, place approved files in `public/videos/` and add user initiated native video controls. Use `preload="none"` to limit initial downloads and include poster images if available.
+- `data/portfolio.ts` contains the biography, links, skill percentages, projects, and hobby selections.
+- `app/components/` contains the sections. Each route in `app/` renders its section. The Home route is `app/page.tsx`.
+- `app/globals.css` controls layout, color, typography, responsive behavior, and reduced motion.
+- `public/images/` and `public/videos/` hold local artwork, posters and silent MP4s. Replace a video and its matching poster together. The videos use native controls and wait for interaction.
+- The contact form validates locally. It displays a preview message and offers a working email link.
+- The project uses Next.js App Router, TypeScript, Tailwind CSS, Lucide icons, and locally served Inter.
 
-The original About portrait file and approved anime or music video files were not attached. Project descriptions are brief summaries based on their titles. Project technology tags and screenshots await verification or user supplied details. The skill percentages and public contact links come from Swaroop.
+The anime clips are original animated illustrations of a sea voyage and a shrine. The music clip is an original silent visual for “4 Raws” by EsDeeKid. The About page supports the brief’s gradient fallback while the approved portrait awaits an accessible original file. Student Support System uses the supplied repository URL and a title-based summary. Its implementation and technologies could not be verified.
 
-## GitHub and deployment
+## Publish and update
 
-Repository: `https://github.com/derpbutpro/swaroop_portfolio`.
-
-To deploy, import the GitHub repository in Vercel, select Next.js, and deploy. After editing the portfolio, commit and push the changes to GitHub, then use the new Vercel deployment from that push.
+Import [derpbutpro/swaroop_portfolio](https://github.com/derpbutpro/swaroop_portfolio) into Vercel. Select the Next.js preset, keep the repository root as the project directory, choose `main` for production, and select Deploy. No environment variables are required. To update the deployed site, edit the content, run the checks above, and push the verified changes to the connected production branch.

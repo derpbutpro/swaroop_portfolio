@@ -1,1 +1,3 @@
-export default function Footer() { return <footer className="footer">© 2026 Swaroop Bevinal</footer>; }
+export default function Footer() {
+  return <footer className="footer">© 2026 Swaroop Bevinal</footer>;
+}
