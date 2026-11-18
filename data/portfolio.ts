@@ -1,4 +1,4 @@
-export type Skill = { name: string; level: number; detail?: string };
+export type Skill = { name: string; level?: number; detail: string };
 export type Project = {
   title: string;
   description: string;
@@ -31,11 +31,14 @@ export const contacts = [
 ];
 
 export const skills: Skill[] = [
-  { name: "HTML", level: 20 },
-  { name: "CSS", level: 30 },
-  { name: "JavaScript", level: 30 },
-  { name: "Python", level: 45 },
-  { name: "C", level: 40 },
+  { name: "HTML", level: 20, detail: "HTML gives a page its structure, from headings and links to forms and buttons." },
+  { name: "CSS", level: 30, detail: "CSS controls a page’s layout, typography and color, and adapts the design to different screens." },
+  { name: "JavaScript", level: 30, detail: "JavaScript makes pages interactive. In Tic-Tac-Toe, it tracks turns and checks the board for a winner." },
+  { name: "Python", level: 45, detail: "Python is a programming language for writing scripts, automating tasks and working with data." },
+  { name: "C", level: 40, detail: "C gives programmers direct control over memory and how data is represented." },
+  { name: "Antigravity", detail: "Google Antigravity is a development environment for working with AI coding agents." },
+  { name: "ChatGPT", detail: "OpenAI’s conversational assistant can explain concepts, explore ideas and help reason through code." },
+  { name: "Claude", detail: "Anthropic’s AI assistant can analyze text, discuss code and help break down complex tasks." },
 ];
 export const projects: Project[] = [
   {

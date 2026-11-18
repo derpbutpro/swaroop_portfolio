@@ -1,35 +1,48 @@
-import SkillGyroscope from "./SkillGyroscope";
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { skills } from "@/data/portfolio";
+import styles from "./Skills.module.css";
+
 export default function Skills() {
+  const [expanded, setExpanded] = useState<string | null>(null);
+
   return (
-    <section id="skills" className="page">
-      <h1>
-        My <em>skills.</em>
-      </h1>
-      <div className="skills-layout">
-        <SkillGyroscope />
-        <div className="skill-list">
-          <h2>Skills in progress</h2>
-          {skills.map((skill) => (
-            <details className="skill-row" key={skill.name} open>
-              <summary>
-                <span>{skill.name}</span>
-                <span>{skill.level}% <span className="meter-toggle" aria-hidden="true" /></span>
-              </summary>
-              <div
-                role="progressbar"
-                aria-label={`${skill.name} learning progress`}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={skill.level}
-                className="meter"
+    <section id="skills" className={`page ${styles.page}`}>
+      <h1>My <em>skills.</em></h1>
+      <div className={styles.list}>
+        {skills.map(({ name, level, detail }) => {
+          const slug = name.toLowerCase();
+          const open = expanded === name;
+          return (
+            <div key={name} className={styles.item}>
+              <button
+                type="button"
+                aria-expanded={open}
+                aria-controls={`detail-${slug}`}
+                onClick={() => setExpanded(open ? null : name)}
               >
-                <span style={{ width: `${skill.level}%` }} />
+                <span className={styles.icon}>
+                  <Image src={`/images/skills/${slug}.svg`} width={30} height={30} alt="" />
+                </span>
+                <span>{name}</span>
+                <ChevronDown className={styles.chevron} size={20} aria-hidden="true" />
+              </button>
+              <div id={`detail-${slug}`} className={styles.detail} hidden={!open}>
+                <p>{detail}</p>
+                {level !== undefined && (
+                  <div className={styles.progress}>
+                    <progress aria-label={`${name} learning progress`} max={100} value={level} />
+                    <span>{level}%</span>
+                  </div>
+                )}
               </div>
-            </details>
-          ))}
-          <p className="small-muted">More coming soon.</p>
-        </div>
+            </div>
+          );
+        })}
+        <p className="small-muted">More coming soon.</p>
       </div>
     </section>
   );

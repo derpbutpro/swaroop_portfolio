@@ -210,7 +210,6 @@ h1 em {
 }
 .project-grid,
 .films,
-.skills-layout,
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -219,8 +218,6 @@ h1 em {
 .project-card,
 .films article,
 .record,
-.skill-list,
-.orbit,
 .contact-layout form,
 .contact-links a {
   background: var(--panel);
@@ -252,14 +249,12 @@ h1 em {
 }
 .project-body,
 .films article div,
-.skill-list,
 .contact-layout form {
   padding: clamp(20px, 3vw, 40px);
 }
 .project-body h2,
 .films h2,
-.record h2,
-.skill-list h2 {
+.record h2 {
   font-size: clamp(23px, 2.3vw, 38px);
   letter-spacing: -0.055em;
 }
@@ -380,58 +375,6 @@ body:has(.about-cover) .navbar nav a:last-child {
 .record .text-link {
   margin-left: auto;
 }
-.orbit {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-width: 0;
-  background: radial-gradient(ellipse at 48% 44%, #322923 0%, #1f2024 48%, #17181b 84%);
-}
-.orbit svg[role="img"] { display: block; width: min(100%, 570px); height: auto; }
-.gyro-toggle {
-  position: absolute;
-  bottom: 9px;
-  right: 9px;
-  display: grid;
-  width: 40px;
-  height: 40px;
-  place-items: center;
-  border: 1px solid #60574c;
-  border-radius: 50%;
-  background: #232326;
-  color: #f4dec9;
-  cursor: pointer;
-}
-.skill-row {
-  border-bottom: 1px solid var(--line);
-}
-.skill-row summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 44px;
-  padding: 10px 0;
-  list-style: none;
-  cursor: pointer;
-  font-variant-numeric: tabular-nums;
-}
-.skill-row summary::-webkit-details-marker { display: none; }
-.skill-row summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.meter-toggle::before { content: "+"; }
-.skill-row[open] .meter-toggle::before { content: "−"; }
-.meter {
-  height: 14px;
-  margin-bottom: 14px;
-  border-radius: 20px;
-  background: #494139;
-  overflow: hidden;
-}
-.meter span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #dc7838, var(--accent));
-}
 .small-muted {
   margin-top: 20px;
   color: var(--muted);
@@ -530,7 +473,6 @@ body:has(.about-cover) .navbar nav a:last-child {
   }
   .hero-stage,
     .contact-layout,
-  .skills-layout,
   .films,
   .project-grid {
     grid-template-columns: 1fr;
