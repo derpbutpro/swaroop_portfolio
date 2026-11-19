@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { contacts } from "@/data/portfolio";
 export default function Contact() {
@@ -11,16 +11,6 @@ export default function Contact() {
   const [pausePressed, setPausePressed] = useState(false);
   const [screamError, setScreamError] = useState(false);
   const alarmStarted = alarmState === "playing" || alarmState === "finished";
-
-  useEffect(() => {
-    const audio = alarm.current;
-    if (!audio) return;
-    void audio.play().catch((error: unknown) => {
-      if (error instanceof DOMException && (error.name === "NotAllowedError" || error.name === "AbortError")) return;
-      setAlarmState("error");
-    });
-    return () => audio.pause();
-  }, []);
 
   async function playScream() {
     setPausePressed(true);
@@ -44,6 +34,7 @@ export default function Contact() {
     audio.volume = 1;
     try {
       await audio.play();
+      setAlarmState("playing");
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return;
       setAlarmState("error");
@@ -90,7 +81,6 @@ export default function Contact() {
             ref={alarm}
             src="/audio/samsung-bass-boosted-alarm.mp3"
             preload="none"
-            onPlaying={() => setAlarmState("playing")}
             onEnded={() => setAlarmState("finished")}
           />
           <div aria-live="polite">
